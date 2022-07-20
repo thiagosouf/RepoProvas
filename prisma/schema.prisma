@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,62 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model users {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+}
+
+model categories {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  tests tests[]
+}
+
+model tests {
+  id                  Int    @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  categoryId          Int
+  teacherDisciplineId Int
+
+  category categories[]
+  teacherDiscipline teacherDisciplines[]
+}
+
+model teacherDisciplines {
+  id   Int    @id @default(autoincrement())
+  teacheriD String
+  disciplineId Int
+
+  tests tests[]
+  teachers teachers[]
+  disciplines disciplines[]
+}
+
+model disciplines {
+  id   Int    @id @default(autoincrement())
+  name String
+  termId Int
+
+  teacherDisciplines teacherDisciplines[]
+  terms terms[]
+}
+
+model terms {
+  id   Int    @id @default(autoincrement())
+  number Int
+
+  disciplines disciplines[]
+}
+
+model teachers{
+  id   Int    @id @default(autoincrement())
+  name String
+
+  teacherDisciplines teacherDisciplines[]
 }
