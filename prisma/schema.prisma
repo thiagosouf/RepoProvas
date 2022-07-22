@@ -29,12 +29,12 @@ model tests {
   teacherDisciplineId Int
 
   category categories[]
-  teacherDiscipline teacherDisciplines[]
+  teachersDisciplines teachersDisciplines[]
 }
 
-model teacherDisciplines {
+model teachersDisciplines {
   id   Int    @id @default(autoincrement())
-  teacheriD String
+  teacherId Int
   disciplineId Int
 
   tests tests[]
@@ -47,7 +47,7 @@ model disciplines {
   name String
   termId Int
 
-  teacherDisciplines teacherDisciplines[]
+  teachersDisciplines teachersDisciplines[]
   terms terms[]
 }
 
@@ -62,5 +62,5 @@ model teachers{
   id   Int    @id @default(autoincrement())
   name String
 
-  teacherDisciplines teacherDisciplines[]
+  teachersDisciplines teachersDisciplines[]
 }
