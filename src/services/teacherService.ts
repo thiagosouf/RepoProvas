@@ -2,12 +2,12 @@ import { conflictError, notFoundError, unauthorizedError, unprocessableError } f
 import * as repo from "../repositories/findTestRepository.js"
 import validToken from "../utils/utils.js"
 
-export async function getDisciplineService(token:string){
+export async function getTeacherService(token:string){
     const userId = validToken(token)
     if(!userId)
         throw unauthorizedError();
-    const result = await repo.findByDiscipline()
+    const result = await repo.findByTeacher()
     if(!result)
-        throw notFoundError("Discipline not found");
+        throw notFoundError("Teacher not found");
     return result
 }
