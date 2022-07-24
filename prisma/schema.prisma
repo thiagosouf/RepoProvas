@@ -25,40 +25,40 @@ model tests {
   id                  Int    @id @default(autoincrement())
   name                String
   pdfUrl              String
+  category            categories @relation(fields: [categoryId], references: [id])
   categoryId          Int
+  teachersDisciplines teachersDisciplines @relation(fields: [teacherDisciplineId], references: [id])
   teacherDisciplineId Int
 
-  category categories[]
-  teachersDisciplines teachersDisciplines[]
 }
 
 model teachersDisciplines {
-  id   Int    @id @default(autoincrement())
-  teacherId Int
+  id           Int         @id @default(autoincrement())
+  teachers     teachers    @relation(fields: [teacherId], references: [id])
+  teacherId    Int
+  disciplines  disciplines @relation(fields: [disciplineId], references: [id])
   disciplineId Int
 
   tests tests[]
-  teachers teachers[]
-  disciplines disciplines[]
 }
 
 model disciplines {
-  id   Int    @id @default(autoincrement())
-  name String
+  id     Int    @id @default(autoincrement())
+  name   String
+  terms  terms  @relation(fields: [termId], references: [id])
   termId Int
 
   teachersDisciplines teachersDisciplines[]
-  terms terms[]
 }
 
 model terms {
-  id   Int    @id @default(autoincrement())
+  id     Int @id @default(autoincrement())
   number Int
 
   disciplines disciplines[]
 }
 
-model teachers{
+model teachers {
   id   Int    @id @default(autoincrement())
   name String
 
