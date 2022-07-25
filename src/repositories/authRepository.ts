@@ -1,9 +1,6 @@
 import { client } from "../database.js";
 import { CreateSignupData,CreateLoginData} from "../services/authService.js"
 import bcrypt from "bcrypt";
-import Cryptr from "cryptr"
-
-const cryptr = new Cryptr(process.env.CRYPTR_KEY);
 
 export interface UserRepository{
     id: number,
