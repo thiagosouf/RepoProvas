@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "tsc src/server.ts",
-    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "npx nodemon src/server.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest -i"
   },
