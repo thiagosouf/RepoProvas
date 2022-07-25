@@ -6,8 +6,6 @@ export async function registerService(body:repo.testsRepository,token:string){
     const userId = validToken(token)
     if(!userId)
         throw unauthorizedError();
-    
-    console.log(userId)
     const {name, pdfUrl, category, discipline, teacher} = body
     const findTeacher =  await repo.findTeacher(teacher)
     if(!findTeacher)
@@ -24,8 +22,6 @@ export async function registerService(body:repo.testsRepository,token:string){
     const findTeacherDiscipline = await repo.findTeacherDiscipline(teacherId, disciplineId)
     if(!findTeacherDiscipline)
         throw unprocessableError("TeacherDiscipline not found");
-    console.log(findTeacherDiscipline.id)
-
 
     const result = await repo.createTest(body, categoryId, findTeacherDiscipline.id)
     if(!result)
